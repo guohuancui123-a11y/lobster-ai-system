@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for helping improve Lobster AI System.
+Thanks for helping improve RepairLoop.
 
 ## Development Setup
 
@@ -19,8 +19,8 @@ python -m pytest -q
 
 ## Adding a Repair Rule
 
-1. Add classification/suggestion logic in `lobster_ai_system/core/fix_engine.py`.
-2. Add apply logic in `lobster_ai_system/core/apply_engine.py` only if the fix is narrow and safe.
+1. Add classification/suggestion logic in `repair_loop/core/fix_engine.py`.
+2. Add apply logic in `repair_loop/core/apply_engine.py` only if the fix is narrow and safe.
 3. Add unit tests under `tests/`.
 4. Update `README.md` and `RELEASE_NOTES.md` if user-facing behavior changes.
 

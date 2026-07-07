@@ -3,14 +3,14 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lobster-ai-system"
+name = "repairloop"
 version = "0.1.2"
 description = "Local-first automatic code repair tool for Python runtime errors"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
-authors = [{ name = "Lobster AI System Contributors" }]
+authors = [{ name = "RepairLoop Contributors" }]
 keywords = ["code-repair", "debugging", "automation", "python", "local-first"]
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -28,8 +28,8 @@ classifiers = [
 dev = ["pytest>=8"]
 
 [project.scripts]
-lobster-ai = "lobster_ai_system.cli:main"
+repair-loop = "repair_loop.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["lobster_ai_system*"]
+include = ["repair_loop*"]
 exclude = ["demo*", "tests*"]

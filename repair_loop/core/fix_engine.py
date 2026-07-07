@@ -84,7 +84,7 @@ def suggest_fix(error: str | None) -> FixSuggestion:
             commands=[],
             notes=[
                 "Check that the command is installed and available on PATH.",
-                "If the command has arguments, put -- before it, for example: lobster-ai run -- python app.py.",
+                "If the command has arguments, put -- before it, for example: repair-loop run -- python app.py.",
             ],
         )
     if kind == ErrorKind.MODULE_NOT_FOUND:

@@ -1,4 +1,4 @@
-from lobster_ai_system.fix_engine import ErrorKind, classify_error, suggest_fix
+from repair_loop.fix_engine import ErrorKind, classify_error, suggest_fix
 
 
 def test_classify_module_not_found():

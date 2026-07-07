@@ -1,6 +1,6 @@
-> Original project: **Lobster** / **Lobster AI System** — local-first Python runtime repair.
+> Original project: **RepairLoop** / **RepairLoop** — local-first Python runtime repair.
 
-# Lobster
+# RepairLoop
 
 ## A local-first Python repair engine for developers, CI, and AI agent workflows.
 
@@ -12,13 +12,13 @@ No API key. No cloud. No prompt guessing. No full-project rewrite.
 BROKEN CODE → CRASH → FIX → RETRY → ✅ SUCCESS
 ```
 
-Lobster is a local-first repair loop for Python runtime failures. It runs your command, reads the real error, applies a small safe fix, then reruns the same command to prove the repair worked.
+RepairLoop is a local-first repair loop for Python runtime failures. It runs your command, reads the real error, applies a small safe fix, then reruns the same command to prove the repair worked.
 
 Use it when you want a boring, inspectable repair primitive instead of a black-box coding agent.
 
 ## What It Is
 
-Lobster is not a chatbot and not a general autonomous developer.
+RepairLoop is not a chatbot and not a general autonomous developer.
 
 It is a deterministic repair loop for Python runtime failures:
 
@@ -33,9 +33,9 @@ If this saves you time, a GitHub star helps the project reach more builders.
 
 ## 10-Second Demo
 
-![Lobster 10-second demo](docs/assets/lobster-demo.gif)
+![RepairLoop 10-second demo](docs/assets/repairloop-demo.gif)
 
-Watch the MP4 version: [docs/assets/lobster-demo.mp4](docs/assets/lobster-demo.mp4)
+Watch the MP4 version: [docs/assets/repairloop-demo.mp4](docs/assets/repairloop-demo.mp4)
 
 That is the whole idea: **run the broken thing, repair the real failure, verify the result.**
 
@@ -63,15 +63,15 @@ This release focuses on first-run trust and CLI polish after black-box testing t
 Clone and install locally:
 
 ```powershell
-git clone https://github.com/guohuancui123-a11y/lobster-ai-system.git
-cd lobster-ai-system
+git clone https://github.com/guohuancui123-a11y/repairloop.git
+cd repairloop
 python -m pip install -e .
 ```
 
-Dry-run first. Lobster shows the repair without changing anything:
+Dry-run first. RepairLoop shows the repair without changing anything:
 
 ```powershell
-python -m lobster_ai_system repair -- python demo/missing_file.py
+python -m repair_loop repair -- python demo/missing_file.py
 ```
 
 ```text
@@ -92,7 +92,7 @@ python -m lobster_ai_system repair -- python demo/missing_file.py
 Then let it repair and verify:
 
 ```powershell
-python -m lobster_ai_system repair --apply --max-iterations 2 -- python demo/missing_file.py
+python -m repair_loop repair --apply --max-iterations 2 -- python demo/missing_file.py
 ```
 
 ```text
@@ -115,7 +115,7 @@ python -m lobster_ai_system repair --apply --max-iterations 2 -- python demo/mis
 
 Most AI coding tools start with a prompt.
 
-Lobster starts with the crash.
+RepairLoop starts with the crash.
 
 It does not try to rewrite your whole project. It watches what failed, matches the failure to a known repair pattern, applies the smallest local fix, and verifies by running the original command again.
 
@@ -123,7 +123,7 @@ It does not try to rewrite your whole project. It watches what failed, matches t
 RUN → OBSERVE ERROR → SUGGEST FIX → APPLY → VERIFY → REPEAT
 ```
 
-## What Lobster Can Repair Today
+## What RepairLoop Can Repair Today
 
 | Runtime signal | Local repair behavior |
 | --- | --- |
@@ -137,7 +137,7 @@ RUN → OBSERVE ERROR → SUGGEST FIX → APPLY → VERIFY → REPEAT
 
 ## Why Local-First Matters
 
-Lobster's base engine is intentionally boring in the best way:
+RepairLoop's base engine is intentionally boring in the best way:
 
 - No required external AI API.
 - No required API key.
@@ -154,7 +154,7 @@ Optional AI-enhanced layers may exist later, but the core repair engine must rem
 From a local checkout:
 
 ```powershell
-cd lobster-ai-system
+cd repairloop
 python -m pip install -e .
 ```
 
@@ -167,13 +167,13 @@ python -m pip install -e .[dev]
 After installation, use either module mode:
 
 ```powershell
-python -m lobster_ai_system repair -- python demo/missing_file.py
+python -m repair_loop repair -- python demo/missing_file.py
 ```
 
 or the console command:
 
 ```powershell
-lobster-ai repair -- python demo/missing_file.py
+repair-loop repair -- python demo/missing_file.py
 ```
 
 ## CLI
@@ -181,25 +181,25 @@ lobster-ai repair -- python demo/missing_file.py
 Observe a command without applying changes:
 
 ```powershell
-python -m lobster_ai_system run -- <command>
+python -m repair_loop run -- <command>
 ```
 
 Suggest a repair without changing anything:
 
 ```powershell
-python -m lobster_ai_system repair -- <command>
+python -m repair_loop repair -- <command>
 ```
 
 Apply safe repairs and rerun the original command:
 
 ```powershell
-python -m lobster_ai_system repair --apply --max-iterations 4 -- <command>
+python -m repair_loop repair --apply --max-iterations 4 -- <command>
 ```
 
 Print a machine-readable report for automation or CI:
 
 ```powershell
-python -m lobster_ai_system repair --json-report -- python demo/missing_file.py
+python -m repair_loop repair --json-report -- python demo/missing_file.py
 ```
 
 ```json
@@ -230,7 +230,7 @@ If a script fails with a missing import:
 ModuleNotFoundError: No module named 'tomli_w'
 ```
 
-Lobster can produce:
+RepairLoop can produce:
 
 ```text
 [FIX] module_not_found
@@ -250,7 +250,7 @@ def main()
     print("hello")
 ```
 
-Lobster can apply the smallest patch:
+RepairLoop can apply the smallest patch:
 
 ```python
 def main():
@@ -260,14 +260,14 @@ def main():
 When it edits an existing file, rollback metadata is written under:
 
 ```text
-.lobster/rollback/
+.repairloop/rollback/
 ```
 
 ## Project Structure
 
 ```text
-lobster-ai-system/
-├── lobster_ai_system/
+repairloop/
+├── repair_loop/
 │   ├── core/
 │   │   ├── apply_engine.py
 │   │   ├── fix_engine.py
@@ -303,19 +303,19 @@ Current validation:
 Check the installed CLI:
 
 ```powershell
-lobster-ai --help
+repair-loop --help
 ```
 
 ## Safety Model
 
-Lobster is a repair assistant, not a magic autopilot.
+RepairLoop is a repair assistant, not a magic autopilot.
 
 - Dry-run mode is the default.
 - `--apply` is required before automatic changes happen.
 - Unknown errors do not get force-fixed.
 - File edits are narrow and rollback metadata is recorded.
 - Package manager commands are generated from explicit rules.
-- You should run Lobster only inside projects you trust.
+- You should run RepairLoop only inside projects you trust.
 
 ## Roadmap
 
@@ -335,23 +335,23 @@ It is ready for early users, demos, and source review. The next milestone is bro
 
 ## Origin
 
-This project was originally created as **Lobster AI System**.
+This project was originally created as **RepairLoop**.
 
-Official short name: **Lobster**
+Official short name: **RepairLoop**
 
-Original repository: `https://github.com/guohuancui123-a11y/lobster-ai-system`
+Original repository: `https://github.com/guohuancui123-a11y/repairloop`
 
 Author: **guohuancui123-a11y**
 
-Lobster is open source under the MIT License. Forks, modifications, demos, and experiments are welcome. If you fork or modify this project, please retain attribution to the original project and repository so users can trace the work back to its source.
+RepairLoop is open source under the MIT License. Forks, modifications, demos, and experiments are welcome. If you fork or modify this project, please retain attribution to the original project and repository so users can trace the work back to its source.
 
 ## Attribution and Fair Use
 
-Lobster is intentionally open source, but it is not anonymous raw material. If this project saves you time, please help the original project stay discoverable:
+RepairLoop is intentionally open source, but it is not anonymous raw material. If this project saves you time, please help the original project stay discoverable:
 
 - Star the original repository if you use or clone it seriously.
 - Keep the upstream link in forks, demos, tutorials, binary packages, screenshots, generated reports, and hosted wrappers.
-- Do not remove the Lobster identity and present a lightly modified copy as an unrelated original project.
+- Do not remove the RepairLoop identity and present a lightly modified copy as an unrelated original project.
 - Use `NOTICE`, `CITATION.cff`, and `BRANDING.md` when publishing derivative work.
 
 Human-readable CLI output and JSON reports include a source attribution field so logs, demos, and automation artifacts can trace back to the original repository.
@@ -361,7 +361,7 @@ For commercial positioning and the Community/Pro split, see [`COMMERCIAL.md`](CO
 Recommended attribution line:
 
 ```text
-Built with Lobster AI System (https://github.com/guohuancui123-a11y/lobster-ai-system)
+Built with RepairLoop (https://github.com/guohuancui123-a11y/repairloop)
 ```
 
 ## License

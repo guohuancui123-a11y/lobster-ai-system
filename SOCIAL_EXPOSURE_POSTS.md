@@ -12,7 +12,7 @@ No source upload.
 Dry-run by default.
 
 GitHub:
-https://github.com/guohuancui123-a11y/lobster-ai-system
+https://github.com/guohuancui123-a11y/repairloop
 
 #Python #OpenSource #DevTools #Debugging
 
@@ -20,13 +20,13 @@ https://github.com/guohuancui123-a11y/lobster-ai-system
 
 BROKEN CODE → CRASH → FIX → RETRY → SUCCESS
 
-Lobster is a local-first repair loop for Python runtime errors.
+RepairLoop is a local-first repair loop for Python runtime errors.
 
 It does not guess from a prompt.
 It runs the failing command, reads the real traceback, applies a small safe fix, and verifies by rerunning.
 
 GitHub:
-https://github.com/guohuancui123-a11y/lobster-ai-system
+https://github.com/guohuancui123-a11y/repairloop
 
 ## Xiaohongshu title
 
@@ -34,7 +34,7 @@ https://github.com/guohuancui123-a11y/lobster-ai-system
 
 ## Xiaohongshu body
 
-最近做了一个本地优先的 Python 自动修复工具：Lobster AI System。
+最近做了一个本地优先的 Python 自动修复工具：RepairLoop。
 
 它不是让 AI 猜代码怎么改，而是从真实运行错误开始：
 
@@ -60,7 +60,7 @@ https://github.com/guohuancui123-a11y/lobster-ai-system
 - SQLite 数据目录 / 表缺失问题
 
 项目已开源：
-https://github.com/guohuancui123-a11y/lobster-ai-system
+https://github.com/guohuancui123-a11y/repairloop
 
 如果你经常被 Python 报错折磨，可以看看这个思路。
 

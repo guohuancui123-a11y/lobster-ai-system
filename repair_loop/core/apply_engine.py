@@ -24,7 +24,7 @@ class ApplyResult:
 
 
 def _rollback_dir() -> Path:
-    path = Path(".lobster") / "rollback"
+    path = Path(".repairloop") / "rollback"
     path.mkdir(parents=True, exist_ok=True)
     return path
 
@@ -98,7 +98,7 @@ def _apply_append_missing_colon(payload: str) -> ApplyResult:
 def _load_db_path() -> Path:
     config_path = Path("config.py")
     if config_path.exists():
-        spec = importlib.util.spec_from_file_location("lobster_target_config", config_path)
+        spec = importlib.util.spec_from_file_location("RepairLoop_target_config", config_path)
         if spec and spec.loader:
             module = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(module)

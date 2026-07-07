@@ -8,4 +8,4 @@ import os
 
 
 def is_enabled() -> bool:
-    return bool(os.environ.get("LOBSTER_AI_API_KEY"))
+    return bool(os.environ.get("REPAIRLOOP_API_KEY"))

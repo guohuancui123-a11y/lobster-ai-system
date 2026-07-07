@@ -6,7 +6,7 @@
 
 ## 正文
 
-最近做了一个本地优先的 Python 自动修复工具：**Lobster AI System**。
+最近做了一个本地优先的 Python 自动修复工具：**RepairLoop**。
 
 它的思路不是让 AI 直接“猜代码怎么改”，而是从真实运行错误开始：
 
@@ -38,7 +38,7 @@
 **不是生成一堆新代码，而是从真实报错出发，把坏掉的程序一步步修好。**
 
 项目已开源：
-https://github.com/guohuancui123-a11y/lobster-ai-system
+https://github.com/guohuancui123-a11y/repairloop
 
 如果你经常被 Python 报错折磨，可以看看这个思路。
 
@@ -46,4 +46,4 @@ https://github.com/guohuancui123-a11y/lobster-ai-system
 
 ## 视频素材
 
-E:\GitHub\lobster-ai-system\docs\assets\lobster-demo-vertical-clean.mp4
+E:\GitHub\repairloop\docs\assets\repairloop-demo-vertical-clean.mp4

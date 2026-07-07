@@ -9,7 +9,7 @@ Use this before the first GitHub push.
 - Review README wording and screenshots/demo plan.
 - Run `python -m pytest -q`.
 - Run `python -m pip install -e .`.
-- Run `lobster-ai --help`.
+- Run `repair-loop --help`.
 
 ## Suggested First Commit
 

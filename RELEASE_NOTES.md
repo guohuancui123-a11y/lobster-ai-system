@@ -2,7 +2,7 @@
 
 ## v0.1.2 - JSON Reports for Automation
 
-This release makes Lobster easier to use from CI, scripts, and other agent runtimes by adding structured JSON output.
+This release makes RepairLoop easier to use from CI, scripts, and other agent runtimes by adding structured JSON output.
 
 ### Highlights
 
@@ -14,7 +14,7 @@ This release makes Lobster easier to use from CI, scripts, and other agent runti
 
 ### Why This Matters
 
-The original CLI was human-readable. That is useful for a terminal demo, but less mature for automation. JSON reports make Lobster usable as a local repair primitive inside CI jobs, scripts, launchers, and agent systems that need to inspect structured outcomes.
+The original CLI was human-readable. That is useful for a terminal demo, but less mature for automation. JSON reports make RepairLoop usable as a local repair primitive inside CI jobs, scripts, launchers, and agent systems that need to inspect structured outcomes.
 
 ### Verified
 
@@ -24,16 +24,16 @@ python -m pytest -q
 ```
 
 ```text
-python -m lobster_ai_system run --json-report -- python -c "print('json-ok')"
+python -m repair_loop run --json-report -- python -c "print('json-ok')"
 ```
 
 ```text
-python -m lobster_ai_system repair --json-report -- python demo/missing_file.py
+python -m repair_loop repair --json-report -- python demo/missing_file.py
 ```
 
 ## v0.1.1 - First-run CLI Polish
 
-This release upgrades the original v0.1 prototype with fixes found by testing Lobster from a normal user/browser perspective.
+This release upgrades the original v0.1 prototype with fixes found by testing RepairLoop from a normal user/browser perspective.
 
 ### Highlights
 
@@ -58,18 +58,18 @@ python -m pytest -q
 ```
 
 ```text
-python -m lobster_ai_system repair -- python demo\missing_file.py
+python -m repair_loop repair -- python demo\missing_file.py
 [PREVIEW] no changes were made; rerun with --apply to execute this fix
 [VERIFY] not rerun; preview mode only
 ```
 
 ```text
-python -m lobster_ai_system repair --apply --max-iterations 2 -- python demo\missing_file.py
+python -m repair_loop repair --apply --max-iterations 2 -- python demo\missing_file.py
 [VERIFY] success
 ```
 
 ```text
-python -m lobster_ai_system run -- definitely-not-a-real-command-for-lobster-tests
+python -m repair_loop run -- definitely-not-a-real-command-for-RepairLoop-tests
 [FIX] command_start_error
 [FIX] The target command could not be started.
 ```
@@ -82,23 +82,23 @@ python -m lobster_ai_system run -- definitely-not-a-real-command-for-lobster-tes
 
 ## v0.1.0 - Local-first Repair Prototype
 
-Lobster AI is now a runnable local-first Python runtime repair engine.
+RepairLoop is now a runnable local-first Python runtime repair engine.
 
 ### Highlights
 
-- CLI entry via `python -m lobster_ai_system`.
+- CLI entry via `python -m repair_loop`.
 - `run` captures stdout, stderr, and exit code.
 - `repair` performs RUN → OBSERVE → FIX → APPLY → VERIFY loop.
 - Base engine works without external AI APIs or API keys.
-- Core logic moved under `lobster_ai_system/core/`.
-- Optional `lobster_ai_system/ai/` layer exists but is disabled by default.
+- Core logic moved under `repair_loop/core/`.
+- Optional `repair_loop/ai/` layer exists but is disabled by default.
 - `ModuleNotFoundError` generates pip install suggestions/commands.
 - `FileNotFoundError` can safely create missing files/directories.
 - `SyntaxError: expected ':'` can apply a narrow missing-colon patch with rollback backup.
 - Flask/Werkzeug compatibility errors can suggest compatible Werkzeug downgrade.
 - SQLite open errors can create missing local data directories.
 - SQLite missing `users` table can create a minimal smoke-test schema.
-- Rollback metadata is written under `.lobster/rollback/` for file edits.
+- Rollback metadata is written under `.repairloop/rollback/` for file edits.
 - Demo scripts in `demo/broken_import.py`, `demo/missing_file.py`, and `demo/broken_syntax.py`.
 - Productized README with local-first positioning.
 - MIT license added.
@@ -111,17 +111,17 @@ python -m pytest -q
 ```
 
 ```text
-python -m lobster_ai_system repair --apply --max-iterations 4 -- python smoke_test.py
+python -m repair_loop repair --apply --max-iterations 4 -- python smoke_test.py
 [VERIFY] success
 ```
 
 ```text
-python -m lobster_ai_system repair --apply --max-iterations 2 -- python demo\missing_file.py
+python -m repair_loop repair --apply --max-iterations 2 -- python demo\missing_file.py
 [VERIFY] success
 ```
 
 ```text
-python -m lobster_ai_system repair --apply --max-iterations 2 -- python demo\broken_syntax.py
+python -m repair_loop repair --apply --max-iterations 2 -- python demo\broken_syntax.py
 [VERIFY] success
 ```
 

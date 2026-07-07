@@ -5,8 +5,8 @@ Add-Type -AssemblyName System.Drawing
 $repo = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $assets = Join-Path $repo "docs\assets"
 $frames = Join-Path $assets "demo_frames"
-$video = Join-Path $assets "lobster-demo.mp4"
-$gif = Join-Path $assets "lobster-demo.gif"
+$video = Join-Path $assets "repairloop-demo.mp4"
+$gif = Join-Path $assets "repairloop-demo.gif"
 
 New-Item -ItemType Directory -Force -Path $assets | Out-Null
 New-Item -ItemType Directory -Force -Path $frames | Out-Null
@@ -42,7 +42,7 @@ function Save-Frame($index, $title, $subtitle, $lines) {
     $graphics.Clear($bg)
 
     $graphics.FillEllipse((New-Brush ([System.Drawing.Color]::FromArgb(32, 255, 107, 74))), -80, -180, 560, 560)
-    $graphics.DrawString("Lobster", $brandFont, (New-Brush $orange), 90, 48)
+    $graphics.DrawString("RepairLoop", $brandFont, (New-Brush $orange), 90, 48)
     $graphics.DrawString($title, $titleFont, (New-Brush $text), 90, 112)
     $graphics.DrawString($subtitle, $subtitleFont, (New-Brush $muted), 90, 156)
 
@@ -80,7 +80,7 @@ $scenes = @(
     },
     @{
         Duration = 3
-        Title = "Lobster reads the crash"
+        Title = "RepairLoop reads the crash"
         Subtitle = "It matches the error to a small local repair."
         Lines = @(
             @{ Text = "[ERROR] ModuleNotFoundError: flask"; Color = $red },
@@ -103,7 +103,7 @@ $scenes = @(
     @{
         Duration = 2
         Title = "Broken code -> fixed code"
-        Subtitle = "That is Lobster in 10 seconds."
+        Subtitle = "That is RepairLoop in 10 seconds."
         Lines = @(
             @{ Text = "BROKEN CODE -> CRASH"; Color = $red },
             @{ Text = "CRASH -> FIX"; Color = $yellow },

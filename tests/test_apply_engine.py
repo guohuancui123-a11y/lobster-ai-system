@@ -1,8 +1,8 @@
 import sqlite3
 import subprocess
 
-from lobster_ai_system.core.apply_engine import apply_suggestion
-from lobster_ai_system.core.fix_engine import ErrorKind, FixSuggestion
+from repair_loop.core.apply_engine import apply_suggestion
+from repair_loop.core.fix_engine import ErrorKind, FixSuggestion
 
 
 def test_apply_disabled_does_not_attempt_command():
@@ -68,9 +68,9 @@ def test_apply_append_missing_colon_creates_backup_and_patch(tmp_path, monkeypat
     result = apply_suggestion(suggestion, enabled=True)
     assert result.ok is True
     assert target.read_text(encoding="utf-8").splitlines()[0] == "def main():"
-    backups = list((tmp_path / ".lobster" / "rollback").glob("broken.py.*.bak"))
+    backups = list((tmp_path / ".repairloop" / "rollback").glob("broken.py.*.bak"))
     assert backups
-    assert (tmp_path / ".lobster" / "rollback" / "records.jsonl").exists()
+    assert (tmp_path / ".repairloop" / "rollback" / "records.jsonl").exists()
 
 
 def test_apply_sqlite_create_users_table_uses_config_db_path(tmp_path, monkeypatch):

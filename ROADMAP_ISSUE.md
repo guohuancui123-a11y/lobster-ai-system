@@ -1,6 +1,6 @@
 # Roadmap: from v0.1 repair loop to broader Python runtime fixes
 
-Lobster v0.1 proves the core loop:
+RepairLoop v0.1 proves the core loop:
 
 ```text
 RUN → OBSERVE ERROR → FIX → APPLY → VERIFY
@@ -11,7 +11,7 @@ The next goal is to make the local-first repair engine broader, safer, and easie
 ## Near-term priorities
 
 - Improve patch previews before `--apply`.
-- Add a rollback restore command for `.lobster/rollback/` records.
+- Add a rollback restore command for `.repairloop/rollback/` records.
 - Expand narrow `SyntaxError` repair templates.
 - Add conservative guards for selected `TypeError` and `IndexError` patterns.
 - Improve dependency repair when import names differ from package names.

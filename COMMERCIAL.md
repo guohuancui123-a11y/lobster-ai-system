@@ -1,6 +1,6 @@
 # Commercial and Pro Edition
 
-Lobster AI System has a public Community edition and a private Pro edition.
+RepairLoop has a public Community edition and a private Pro edition.
 
 ## Community Edition
 
@@ -29,4 +29,4 @@ The Pro edition is private and contains the higher-value commercial roadmap:
 
 The Community edition is for trust, demos, learning, and early adoption. The Pro edition protects the deeper product work from low-attribution cloning while keeping the public project alive as the canonical source.
 
-If you are interested in commercial usage, collaboration, or the Pro roadmap, open an issue in the public repository and reference "Lobster Pro".
+If you are interested in commercial usage, collaboration, or the Pro roadmap, open an issue in the public repository and reference "RepairLoop Pro".

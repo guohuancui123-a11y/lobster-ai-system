@@ -1,7 +1,7 @@
 import json
 
-from lobster_ai_system.cli import RunResult, first_blocking_error, main, print_apply_result, repair_loop, run_command
-from lobster_ai_system.core.apply_engine import ApplyResult
+from repair_loop.cli import RunResult, first_blocking_error, main, print_apply_result, repair_loop, run_command
+from repair_loop.core.apply_engine import ApplyResult
 
 
 def test_first_blocking_error_uses_exception_line():
@@ -45,7 +45,7 @@ def test_print_apply_result_marks_dry_run_preview(capsys):
 
 
 def test_run_command_reports_startup_errors_without_traceback():
-    result = run_command(["definitely-not-a-real-command-for-lobster-tests"])
+    result = run_command(["definitely-not-a-real-command-for-RepairLoop-tests"])
 
     assert result.returncode == 127
     assert "Could not start command" in result.stderr
@@ -60,8 +60,8 @@ def test_run_json_report_outputs_machine_readable_payload(capsys):
     assert payload["ok"] is True
     assert payload["returncode"] == 0
     assert payload["stdout"].strip() == "json-ok"
-    assert payload["tool"]["name"] == "Lobster AI System"
-    assert "github.com/guohuancui123-a11y/lobster-ai-system" in payload["tool"]["url"]
+    assert payload["tool"]["name"] == "RepairLoop"
+    assert "github.com/guohuancui123-a11y/repairloop" in payload["tool"]["url"]
 
 
 def test_human_output_includes_source_attribution(capsys):
@@ -69,8 +69,8 @@ def test_human_output_includes_source_attribution(capsys):
 
     captured = capsys.readouterr()
     assert code == 0
-    assert "[SOURCE] Built with Lobster AI System" in captured.out
-    assert "github.com/guohuancui123-a11y/lobster-ai-system" in captured.out
+    assert "[SOURCE] Built with RepairLoop" in captured.out
+    assert "github.com/guohuancui123-a11y/repairloop" in captured.out
 
 
 def test_repair_json_report_preview_is_machine_readable(capsys):

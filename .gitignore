@@ -5,6 +5,6 @@ __pycache__/
 .venv/
 build/
 dist/
-.lobster/
+.repairloop/
 demo/generated/
 PROJECT_CONTEXT.md

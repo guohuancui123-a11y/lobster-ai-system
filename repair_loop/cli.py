@@ -166,7 +166,7 @@ def apply_payload(result: ApplyResult) -> dict[str, object]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="lobster-ai",
+        prog="repair-loop",
         description="Local-first automatic code repair helper for Python runtime errors.",
     )
     subparsers = parser.add_subparsers(dest="command_name")
