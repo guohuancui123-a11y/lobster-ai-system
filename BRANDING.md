@@ -10,11 +10,23 @@ The goal is not to restrict forks. Forks are welcome. The goal is to keep the or
 
 This is the preferred short name for titles, headings, demos, screenshots, and social posts.
 
-## Recommended Full Name
+## Recommended Full Description
 
-**RepairLoop**
+**RepairLoop — original local-first Python runtime repair engine**
 
-Use the full name when context is needed, especially in package listings, GitHub descriptions, articles, and fork attribution.
+Use this when context is needed, especially in package listings, GitHub descriptions, articles, and fork attribution.
+
+## Official Identity
+
+RepairLoop is the original local-first Python runtime repair engine created and maintained by guohuancui123-a11y.
+
+Official repository:
+
+```text
+https://github.com/guohuancui123-a11y/repairloop
+```
+
+The public Git history, release timeline, README evolution, and demo assets establish the original project timeline.
 
 ## Repository Slug
 
@@ -46,6 +58,12 @@ Recommended GitHub repo description:
 ```text
 RepairLoop — original local-first Python runtime repair tool. Run broken code, fix real errors, verify success. No API key, no cloud.
 ```
+
+## Name and Attribution
+
+The name "RepairLoop" identifies the original project. Forks are welcome under the MIT License, but derivative projects should not present themselves as the original upstream project, claim original authorship, or remove upstream attribution in a misleading way.
+
+If RepairLoop becomes commercially significant, consider formal trademark registration for the project name and logo.
 
 ## Names to Avoid
 

@@ -2,6 +2,10 @@
 
 # RepairLoop
 
+RepairLoop is the original local-first Python runtime repair engine created and maintained by [guohuancui123-a11y](https://github.com/guohuancui123-a11y).
+
+Copyright (c) 2026 Guohuancui.
+
 Local-first Python runtime repair engine.
 
 Run → Capture → Repair → Verify.
