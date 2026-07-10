@@ -103,7 +103,7 @@ It is a deterministic repair loop for Python runtime failures:
 - **Safe by default:** dry-run is the default; `--apply` is required for changes.
 - **Automation-ready:** JSON reports make it usable from CI, launchers, and agent runtimes.
 
-If this saves you time, a GitHub star helps the project reach more builders.
+If RepairLoop is useful to you, starring the repo is a simple way to follow the roadmap and help other Python developers discover it.
 
 ## Install
 
@@ -346,7 +346,7 @@ RepairLoop is open source under the MIT License. Forks, modifications, demos, an
 
 RepairLoop is intentionally open source, but it is not anonymous raw material. If this project saves you time, please help the original project stay discoverable:
 
-- Star the original repository if you use or clone it seriously.
+- If you find the project useful, consider starring the original repository so future updates are easier to follow.
 - Keep the upstream link in forks, demos, tutorials, binary packages, screenshots, generated reports, and hosted wrappers.
 - Do not remove the RepairLoop identity and present a lightly modified copy as an unrelated original project.
 - Use `NOTICE`, `CITATION.cff`, and `BRANDING.md` when publishing derivative work.
