@@ -21,15 +21,17 @@ No cloud. No API key. No source upload. No full-project rewrite.
 BROKEN PYTHON COMMAND → REAL CRASH → MINIMAL FIX → RERUN → VERIFIED
 ```
 
-## 10-Second Demo
+## 30-Second Demo
 
-![RepairLoop 10-second demo](docs/assets/repairloop-demo.gif)
+![RepairLoop 30-second demo](docs/assets/repairloop-demo.gif)
 
 Watch the MP4 version: [docs/assets/repairloop-demo.mp4](docs/assets/repairloop-demo.mp4)
 
+Vertical demo for social posts: [docs/assets/repairloop-demo-vertical.mp4](docs/assets/repairloop-demo-vertical.mp4)
+
 Social preview image: [docs/assets/repairloop-social-preview.png](docs/assets/repairloop-social-preview.png)
 
-That is the whole idea: **run the broken thing, repair the real failure, verify the result.**
+In 30 seconds, the demo shows the full RepairLoop story: **a real Python crash, a dry-run repair preview, an explicit apply step, and verification by rerunning the original command.**
 
 ## Quick Example
 
