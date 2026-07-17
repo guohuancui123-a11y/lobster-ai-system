@@ -113,7 +113,21 @@ Install from PyPI:
 python -m pip install repairloop
 ```
 
-Then run:
+Then run a safe temporary demo:
+
+```powershell
+repair-loop demo
+```
+
+The demo creates a temporary script, previews a missing-file repair, and deletes the temporary directory when it exits. It does not require this repository's `demo/` folder.
+
+To apply and verify the same safe repair inside that temporary directory:
+
+```powershell
+repair-loop demo --apply
+```
+
+From a source checkout, you can also run the checked-in demo file directly:
 
 ```powershell
 repair-loop repair -- python demo/missing_file.py
@@ -294,13 +308,14 @@ python -m pytest -q
 Current validation:
 
 ```text
-25 passed
+29 passed
 ```
 
 Check the installed CLI:
 
 ```powershell
 repair-loop --help
+repair-loop --version
 ```
 
 ## Safety Model

@@ -8,9 +8,13 @@ RepairLoop is now published on PyPI as `repairloop`.
 
 - Published installable packages to PyPI.
 - Added `repair-loop` as the console command for normal installs.
+- Added `repair-loop --version` for a clean installed-version check.
+- Added `repair-loop demo`, a safe temporary first-run path that works after install.
+- Help output now points to the GitHub docs and one safe command to try.
 - Confirmed `pip install repairloop==0.2.0` works from a clean environment.
 - Updated public project positioning under the RepairLoop name.
 - Added technical overview and benchmark planning docs.
+- Test coverage is now `29 passed`.
 
 ### Install
 
@@ -25,6 +29,10 @@ python -m build
 twine check dist/*
 pip install repairloop==0.2.0
 repair-loop --help
+repair-loop --version
+repair-loop demo
+python -m pytest -q
+29 passed
 ```
 
 ## v0.1.2 - JSON Reports for Automation

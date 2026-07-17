@@ -1,4 +1,7 @@
 import json
+from pathlib import Path
+
+import pytest
 
 from repair_loop.cli import RunResult, first_blocking_error, main, print_apply_result, repair_loop, run_command
 from repair_loop.core.apply_engine import ApplyResult
@@ -73,8 +76,16 @@ def test_human_output_includes_source_attribution(capsys):
     assert "github.com/guohuancui123-a11y/repairloop" in captured.out
 
 
-def test_repair_json_report_preview_is_machine_readable(capsys):
-    code = main(["repair", "--json-report", "--", "python", "demo/missing_file.py"])
+def test_repair_json_report_preview_is_machine_readable(capsys, tmp_path):
+    target = tmp_path / "missing_file_demo.py"
+    missing_path = tmp_path / "generated" / "config.txt"
+    target.write_text(
+        "from pathlib import Path\n"
+        f"print(Path({str(missing_path)!r}).read_text())\n",
+        encoding="utf-8",
+    )
+
+    code = main(["repair", "--json-report", "--", "python", str(target)])
 
     captured = capsys.readouterr()
     payload = json.loads(captured.out)
@@ -82,3 +93,33 @@ def test_repair_json_report_preview_is_machine_readable(capsys):
     assert payload["ok"] is False
     assert payload["preview"] is True
     assert payload["iterations"][0]["run"]["suggestion"]["kind"] == "file_not_found"
+
+
+def test_main_version_prints_package_version(capsys):
+    with pytest.raises(SystemExit) as error:
+        main(["--version"])
+
+    captured = capsys.readouterr()
+    assert error.value.code == 0
+    assert "repair-loop" in captured.out
+    assert "Traceback" not in captured.err
+
+
+def test_main_help_mentions_safe_first_run(capsys):
+    with pytest.raises(SystemExit) as error:
+        main(["--help"])
+
+    captured = capsys.readouterr()
+    assert error.value.code == 0
+    assert "repair-loop demo" in captured.out
+    assert "https://github.com/guohuancui123-a11y/repairloop" in captured.out
+
+
+def test_demo_preview_uses_temporary_project(capsys):
+    code = main(["demo"])
+
+    captured = capsys.readouterr()
+    assert code != 0
+    assert "[DEMO] temporary project:" in captured.out
+    assert "[PREVIEW] no changes were made" in captured.out
+    assert "[VERIFY] not rerun; preview mode only" in captured.out

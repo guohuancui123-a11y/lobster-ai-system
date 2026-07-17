@@ -4,12 +4,25 @@ import argparse
 import json
 import subprocess
 import sys
+import tempfile
 from dataclasses import dataclass
+from importlib.metadata import PackageNotFoundError, version
+from pathlib import Path
 from typing import Sequence
 
 from .core.apply_engine import ApplyResult, apply_suggestion
 from .core.fix_engine import FixSuggestion, suggest_fix
 from .metadata import ATTRIBUTION, PROJECT_NAME, PROJECT_URL
+
+PACKAGE_NAME = "repairloop"
+SAFE_FIRST_RUN_COMMAND = "repair-loop demo"
+
+
+def package_version() -> str:
+    try:
+        return version(PACKAGE_NAME)
+    except PackageNotFoundError:
+        return "0+unknown"
 
 
 @dataclass(slots=True)
@@ -168,8 +181,17 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="repair-loop",
         description="Local-first automatic code repair helper for Python runtime errors.",
+        epilog=(
+            f"First safe command to try: {SAFE_FIRST_RUN_COMMAND}\n"
+            f"Docs and examples: {PROJECT_URL}"
+        ),
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
+    parser.add_argument("--version", action="version", version=f"repair-loop {package_version()}")
     subparsers = parser.add_subparsers(dest="command_name")
+
+    demo_parser = subparsers.add_parser("demo", help="Run a safe temporary FileNotFoundError repair demo.")
+    demo_parser.add_argument("--apply", action="store_true", help="Apply the demo repair inside a temporary directory.")
 
     run_parser = subparsers.add_parser("run", help="Run a target command and capture output.")
     run_parser.add_argument("--json-report", action="store_true", help="Print a machine-readable JSON report.")
@@ -191,6 +213,20 @@ def normalize_target(raw_target: Sequence[str], parser: argparse.ArgumentParser,
     if not target:
         parser.error(f"{command_name} requires a target command")
     return target
+
+
+def run_demo(*, apply: bool) -> int:
+    with tempfile.TemporaryDirectory(prefix="repair-loop-demo-") as temp_dir:
+        demo_path = Path(temp_dir) / "missing_file_demo.py"
+        missing_path = Path(temp_dir) / "generated" / "config.txt"
+        demo_path.write_text(
+            "from pathlib import Path\n"
+            f"print(Path({str(missing_path)!r}).read_text())\n",
+            encoding="utf-8",
+        )
+        print("[DEMO] temporary project:", temp_dir)
+        print("[DEMO] safe local repair target: missing generated/config.txt")
+        return repair_loop([sys.executable, str(demo_path)], apply=apply, max_iterations=2)
 
 
 def repair_loop(target: Sequence[str], *, apply: bool, max_iterations: int, json_report: bool = False) -> int:
@@ -246,6 +282,9 @@ def repair_loop(target: Sequence[str], *, apply: bool, max_iterations: int, json
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
+
+    if args.command_name == "demo":
+        return run_demo(apply=args.apply)
 
     if args.command_name == "run":
         target = normalize_target(args.target, parser, "run")
